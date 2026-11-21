@@ -11,10 +11,14 @@ Static single-page websites generated, verified, and maintained by the local AI 
 
 ## Local commands
 
+See [docs/prerequisites.md](docs/prerequisites.md) for the full Mac setup. From a fresh clone:
+
 ```bash
+brew bundle --no-upgrade
 mise install
 npm ci
 npx playwright install chromium
+pre-commit install
 ```
 
 ```bash
