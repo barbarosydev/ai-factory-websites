@@ -1,0 +1,9 @@
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+.worktrees/
+.env
+.env.*
+.claude/settings.local.json
+.DS_Store
