@@ -1,0 +1,119 @@
+{
+  "schema_version": "v1",
+  "site_slug": "kaffeekultur-berlin",
+  "operation": "create",
+  "category": "Coffee Shop",
+  "page_title": "Kaffeekultur Berlin — Specialty Coffee in Kreuzberg",
+  "tagline": "Small-batch roasted specialty coffee and artisanal pastries in the heart of Berlin-Kreuzberg.",
+  "theme": {
+    "primary_color": "#2C1A12",
+    "background_color": "#FAF6F0",
+    "accent_color": "#C87D44",
+    "font_pairing": "Georgia, serif + system-ui, sans-serif"
+  },
+  "navigation": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Menu",
+      "href": "#menu"
+    },
+    {
+      "label": "Hours",
+      "href": "#hours"
+    },
+    {
+      "label": "Location",
+      "href": "#location"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "heading": "Kaffeekultur Berlin",
+      "purpose": "Welcome visitors with the roastery tagline and primary call to action.",
+      "required_keywords": [
+        "Kaffeekultur Berlin",
+        "Kreuzberg"
+      ],
+      "required_elements": [
+        "h1",
+        "p",
+        "a"
+      ]
+    },
+    {
+      "id": "about",
+      "heading": "Our Roastery",
+      "purpose": "Share the story of our direct-trade beans and small-batch Berlin roasting.",
+      "required_keywords": [
+        "Roastery",
+        "Direct Trade"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "menu",
+      "heading": "Signature Drinks \u0026 Pastries",
+      "purpose": "Highlight espresso classics, pour-over filters, and fresh daily pastries.",
+      "required_keywords": [
+        "Espresso",
+        "Flat White",
+        "Cardamom Bun"
+      ],
+      "required_elements": [
+        "h2",
+        "ul"
+      ]
+    },
+    {
+      "id": "hours",
+      "heading": "Opening Hours",
+      "purpose": "Display the daily operating hours for the shop.",
+      "required_keywords": [
+        "Mon–Fri",
+        "Sat–Sun"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "location",
+      "heading": "Visit Us in Kreuzberg",
+      "purpose": "Provide the physical address and neighborhood context.",
+      "required_keywords": [
+        "Oranienstraße 42",
+        "Berlin"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Get in Touch",
+      "purpose": "Provide contact details and email for inquiries.",
+      "required_keywords": [
+        "hallo@kaffeekultur-berlin.example"
+      ],
+      "required_elements": [
+        "h2",
+        "p",
+        "a"
+      ]
+    }
+  ],
+  "footer_text": "© 2026 Kaffeekultur Berlin · Oranienstraße 42, 10999 Berlin-Kreuzberg"
+}
