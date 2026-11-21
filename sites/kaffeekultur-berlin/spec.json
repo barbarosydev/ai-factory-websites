@@ -1,14 +1,14 @@
 {
   "schema_version": "v1",
   "site_slug": "kaffeekultur-berlin",
-  "operation": "create",
+  "operation": "modify",
   "category": "Coffee Shop",
   "page_title": "Kaffeekultur Berlin — Specialty Coffee in Kreuzberg",
   "tagline": "Small-batch roasted specialty coffee and artisanal pastries in the heart of Berlin-Kreuzberg.",
   "theme": {
     "primary_color": "#2C1A12",
     "background_color": "#FAF6F0",
-    "accent_color": "#C87D44",
+    "accent_color": "#2D6A4F",
     "font_pairing": "Georgia, serif + system-ui, sans-serif"
   },
   "navigation": [
@@ -31,6 +31,10 @@
     {
       "label": "Contact",
       "href": "#contact"
+    },
+    {
+      "label": "Events",
+      "href": "#events"
     }
   ],
   "sections": [
@@ -112,6 +116,20 @@
         "h2",
         "p",
         "a"
+      ]
+    },
+    {
+      "id": "events",
+      "heading": "Friday Jazz \u0026 Latte Art",
+      "purpose": "Promote the weekly Friday evening jazz and latte art tasting nights.",
+      "required_keywords": [
+        "Friday",
+        "Jazz",
+        "Latte Art"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
       ]
     }
   ],
