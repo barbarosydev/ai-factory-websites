@@ -1,0 +1,117 @@
+{
+  "schema_version": "v1",
+  "site_slug": "konditorei-flora-berlin",
+  "operation": "create",
+  "category": "Bakery",
+  "page_title": "Konditorei Flora Berlin — Vegan Patisserie \u0026 Bakery",
+  "tagline": "Artisanal plant-based pastries and sourdough bread in the heart of Prenzlauer Berg.",
+  "theme": {
+    "primary_color": "#8A9A5B",
+    "background_color": "#FAF9F6",
+    "accent_color": "#D4A373",
+    "font_pairing": "Playfair Display, serif + system-ui, sans-serif"
+  },
+  "navigation": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Menu",
+      "href": "#menu"
+    },
+    {
+      "label": "Hours",
+      "href": "#hours"
+    },
+    {
+      "label": "Location",
+      "href": "#location"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "heading": "Konditorei Flora Berlin",
+      "purpose": "Welcome visitors with the bakery's name and a clear statement of its vegan mission.",
+      "required_keywords": [
+        "Konditorei Flora",
+        "Prenzlauer Berg"
+      ],
+      "required_elements": [
+        "h1",
+        "p",
+        "a"
+      ]
+    },
+    {
+      "id": "about",
+      "heading": "Our Plant-Based Patisserie",
+      "purpose": "Explain the artisanal approach to plant-based baking and the patisserie's philosophy.",
+      "required_keywords": [
+        "Plant-based",
+        "Patisserie"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "menu",
+      "heading": "Signature Pastries \u0026 Sourdough",
+      "purpose": "Showcase the selection of sourdough breads and signature vegan pastries.",
+      "required_keywords": [
+        "Sourdough",
+        "Pastries"
+      ],
+      "required_elements": [
+        "h2",
+        "ul"
+      ]
+    },
+    {
+      "id": "hours",
+      "heading": "Opening Hours",
+      "purpose": "Display the weekly opening hours for the bakery.",
+      "required_keywords": [
+        "Tue–Sun",
+        "08:00–18:00"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "location",
+      "heading": "Visit Us",
+      "purpose": "Provide the physical address and neighborhood context.",
+      "required_keywords": [
+        "Kollwitzstraße 18",
+        "Prenzlauer Berg"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Get in Touch",
+      "purpose": "Provide contact information including phone number.",
+      "required_keywords": [
+        "+49 30 5550192"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    }
+  ],
+  "footer_text": "© 2026 Konditorei Flora Berlin · Kollwitzstraße 18, 10405 Berlin-Prenzlauer Berg"
+}
