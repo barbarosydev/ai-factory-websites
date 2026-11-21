@@ -1,0 +1,28 @@
+name: Modify an Existing Website
+description: Request updates to an existing website under sites/<slug>/.
+title: "[Modify Site]: "
+labels:
+  - "factory:ready"
+body:
+  - type: input
+    id: site_slug
+    attributes:
+      label: Target Site Slug
+      description: Exact directory name under sites/ (e.g. kaffeekultur-berlin).
+      placeholder: kaffeekultur-berlin
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: Requested Changes
+      description: Describe what to add, change, or remove.
+      placeholder: Add a seasonal winter drinks section and update the primary theme color to forest green.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Must-Keep / Constraints (optional)
+      description: Existing sections, facts, or styles that must remain unchanged.
+      placeholder: Keep existing opening hours and Berlin Kreuzberg address unchanged.

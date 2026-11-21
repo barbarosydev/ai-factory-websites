@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(task)",
+      "Bash(task --list)",
+      "Bash(task lint*)",
+      "Bash(task test*)",
+      "Bash(task ci*)",
+      "Bash(task preview*)",
+      "Bash(npx playwright test*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch --show-current)",
+      "Bash(tests/hooks/run.sh)",
+      "Bash(mise ls*)",
+      "Bash(mise --version)"
+    ],
+    "ask": [
+      "Bash(task setup:labels*)",
+      "Bash(npm install*)",
+      "Bash(npm ci*)",
+      "Bash(git push*)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(~/.kube/**)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Edit(**/*.pem)",
+      "Write(**/.env)",
+      "Write(**/.env.*)",
+      "Write(**/*.pem)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-context.sh" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/branch-guard.sh" },
+          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/agent-guard.sh" }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/secret-guard.sh" },
+          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/site-isolation-guard.sh" }
+        ]
+      }
+    ]
+  }
+}
