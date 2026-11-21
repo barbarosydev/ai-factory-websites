@@ -1,0 +1,51 @@
+name: Create a New Website
+description: Request a new responsive single-page static website from the AI Software Factory.
+title: "[New Site]: "
+labels:
+  - "factory:ready"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the single-page static website you want the factory to build.
+        Supported: coffee shop, bakery, restaurant, barber, photographer, portfolio, consultancy, local store, event page.
+        Out of scope for v1: login/auth, databases, payments/e-commerce, backend APIs.
+  - type: input
+    id: site_slug
+    attributes:
+      label: Site Slug (optional)
+      description: Lowercase kebab-case folder name under sites/. Leave blank for the PM agent to choose.
+      placeholder: kaffeekultur-berlin
+  - type: dropdown
+    id: category
+    attributes:
+      label: Business / Site Category
+      options:
+        - Coffee Shop
+        - Bakery
+        - Restaurant
+        - Barber
+        - Photographer
+        - Portfolio
+        - Consultancy
+        - Local Store
+        - Event Page
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What should the website include?
+      description: Describe the vibe, location, sections, and purpose in plain language.
+      placeholder: Create a responsive single-page website for a fictional specialty coffee shop in Berlin Kreuzberg. Include hero, about, menu, opening hours, location, and contact information.
+    validations:
+      required: true
+  - type: textarea
+    id: must_have_facts
+    attributes:
+      label: Must-Have Facts (optional)
+      description: Exact business name, address, hours, prices, or contact details that must not be invented.
+      placeholder: |
+        Name: Kaffeekultur Berlin
+        Address: Oranienstraße 42, 10969 Berlin

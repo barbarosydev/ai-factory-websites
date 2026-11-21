@@ -1,0 +1,11 @@
+# Runs task ci --staged before every commit so no lint failure or secret reaches git.
+# Install once per clone: pre-commit install
+repos:
+  - repo: local
+    hooks:
+      - id: task-ci
+        name: task ci (lint, tests and secret scan)
+        entry: scripts/ci.sh --staged
+        language: system
+        pass_filenames: false
+        always_run: true

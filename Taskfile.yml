@@ -1,0 +1,33 @@
+# Thin task runner: every task calls one script in scripts/, where the logic lives.
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task --list
+    silent: true
+
+  lint:
+    desc: Run shellcheck, ruff, JSON/YAML checks, Conftest policies, actionlint, and doc checks
+    cmds:
+      - ./scripts/lint.sh
+
+  test:
+    desc: "Run hook tests and Playwright site verification (set SITE_SLUG=<slug> or ALL_SITES=1)"
+    cmds:
+      - ./scripts/test.sh {{.CLI_ARGS}}
+
+  ci:
+    desc: Run task lint, task test, and gitleaks secret scan (pre-commit and GitHub Actions)
+    cmds:
+      - ./scripts/ci.sh {{.CLI_ARGS}}
+
+  preview:
+    desc: "Serve a local site for browser preview (e.g. SITE_SLUG=_template task preview)"
+    cmds:
+      - node ./scripts/serve.mjs {{.CLI_ARGS}}
+
+  setup:labels:
+    desc: Create or update all factory:* labels on GitHub using gh CLI
+    cmds:
+      - ./scripts/setup-labels.sh

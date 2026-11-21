@@ -1,0 +1,58 @@
+{
+  "schema_version": "v1",
+  "site_slug": "_template",
+  "operation": "create",
+  "category": "reference-template",
+  "page_title": "Nordlicht Studio — Reference Baseline",
+  "tagline": "Clean static architecture verified end to end.",
+  "theme": {
+    "primary_color": "#1E293B",
+    "background_color": "#F8FAFC",
+    "accent_color": "#0F766E",
+    "font_pairing": "system-sans"
+  },
+  "navigation": [
+    { "label": "About", "href": "#about" },
+    { "label": "Services", "href": "#services" },
+    { "label": "Hours", "href": "#hours" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "heading": "Nordlicht Studio",
+      "purpose": "Hero introduction with headline, tagline, and primary call to action.",
+      "required_keywords": ["Nordlicht Studio", "Explore Services"],
+      "required_elements": ["cta-button"]
+    },
+    {
+      "id": "about",
+      "heading": "About Us",
+      "purpose": "Short overview of the studio and craftsmanship.",
+      "required_keywords": ["craft", "local"],
+      "required_elements": []
+    },
+    {
+      "id": "services",
+      "heading": "Services",
+      "purpose": "Three-column responsive grid of core offerings.",
+      "required_keywords": ["Consultation", "Design"],
+      "required_elements": []
+    },
+    {
+      "id": "hours",
+      "heading": "Opening Hours",
+      "purpose": "Weekly schedule table.",
+      "required_keywords": ["Monday", "Friday"],
+      "required_elements": ["hours-table"]
+    },
+    {
+      "id": "contact",
+      "heading": "Contact",
+      "purpose": "Address and email contact information.",
+      "required_keywords": ["hello@nordlicht.example"],
+      "required_elements": ["contact-address"]
+    }
+  ],
+  "footer_text": "Nordlicht Studio — Reference template for AI Software Factory verification."
+}
