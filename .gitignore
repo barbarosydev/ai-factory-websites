@@ -6,4 +6,9 @@ blob-report/
 .env
 .env.*
 .claude/settings.local.json
+__pycache__/
+*.py[cod]
+.idea/
+.vscode/
 .DS_Store
+*.log

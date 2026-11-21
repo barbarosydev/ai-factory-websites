@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Lint shell scripts, JSON/YAML files, Conftest policies, GitHub Actions, and site structure.
+# Lint shell scripts, Python helpers, JSON/YAML files, Conftest policies, GitHub Actions, site isolation, and doc links.
 set -euo pipefail
 
 # shellcheck source=scripts/lib/common.sh
@@ -20,12 +20,20 @@ run() {
 
 tracked() { git ls-files --cached --others --exclude-standard -- "$@"; }
 
-require_cmd shellcheck jq yq conftest actionlint
+require_cmd shellcheck ruff jq yq conftest actionlint
 
 shell_files="$(tracked '*.sh')"
 if [[ -n "$shell_files" ]]; then
   # shellcheck disable=SC2086
   run "shellcheck ($(wc -l <<<"$shell_files" | tr -d ' ') files)" shellcheck -x $shell_files
+fi
+
+py_files="$(tracked '*.py')"
+if [[ -n "$py_files" ]]; then
+  # shellcheck disable=SC2086
+  run "ruff check ($(wc -l <<<"$py_files" | tr -d ' ') files)" ruff check --quiet $py_files
+  # shellcheck disable=SC2086
+  run "ruff format --check" ruff format --check --quiet $py_files
 fi
 
 # shellcheck disable=SC2317,SC2329
@@ -51,5 +59,8 @@ run "conftest verify (policy unit tests)" conftest verify --no-color --policy po
 run "policy: workflows read-only and SHA-pinned" conftest test --no-color --policy policy --namespace github $(tracked '.github/workflows/*.yml')
 run "policy: Claude Code deny rules and guard hooks" conftest test --no-color --policy policy --namespace claude .claude/settings.json
 run "actionlint" actionlint -no-color
+
+run "doc links and paths" "$REPO_ROOT/scripts/lib/check_links.py"
+run "task commands in AGENTS.md and docs/runbook.md" "$REPO_ROOT/scripts/lib/check_commands.py"
 
 exit "$failed"
