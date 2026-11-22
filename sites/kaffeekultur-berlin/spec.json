@@ -97,7 +97,7 @@
       "heading": "Visit Us in Kreuzberg",
       "purpose": "Provide the physical address and neighborhood context.",
       "required_keywords": [
-        "Oranienstraße 42",
+        "Oranienstraìee 42",
         "Berlin"
       ],
       "required_elements": [
@@ -120,12 +120,15 @@
     },
     {
       "id": "events",
-      "heading": "Friday Jazz \u0026 Latte Art",
-      "purpose": "Promote the weekly Friday evening jazz and latte art tasting nights.",
+      "heading": "Events \u0026 Workshops",
+      "purpose": "Promote the weekly Friday evening jazz and latte art tasting nights, and the Saturday Coffee Cupping Workshop (11:00–12:30, 15 EUR per guest). Reservations can be made at hello@kaffeekultur.example.",
       "required_keywords": [
         "Friday",
         "Jazz",
-        "Latte Art"
+        "Latte Art",
+        "Saturday",
+        "Cupping Workshop",
+        "hello@kaffeekultur.example"
       ],
       "required_elements": [
         "h2",
@@ -133,5 +136,5 @@
       ]
     }
   ],
-  "footer_text": "© 2026 Kaffeekultur Berlin · Oranienstraße 42, 10999 Berlin-Kreuzberg"
+  "footer_text": "© 2026 Kaffeekultur Berlin · Oranienstraìee 42, 10999 Berlin-Kreuzberg"
 }
