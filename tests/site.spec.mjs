@@ -6,7 +6,14 @@ const slug = process.env.SITE_SLUG || '_template';
 const worktreeRoot = process.env.SITE_WORKTREE_ROOT || process.cwd();
 const siteDir = path.join(worktreeRoot, 'sites', slug);
 const specPath = path.join(siteDir, 'spec.json');
-const evidenceDir = path.join(siteDir, 'evidence');
+const trackedEvidenceDir = path.join(siteDir, 'evidence');
+const hasCommittedEvidence =
+  fs.existsSync(path.join(trackedEvidenceDir, 'desktop.png')) &&
+  fs.existsSync(path.join(trackedEvidenceDir, 'mobile.png'));
+const writeTrackedEvidence = process.env.WRITE_EVIDENCE === '1' || !hasCommittedEvidence;
+const evidenceDir = writeTrackedEvidence
+  ? trackedEvidenceDir
+  : path.join(process.cwd(), 'test-results', 'evidence', slug);
 
 if (!fs.existsSync(specPath)) {
   throw new Error(`Missing spec.json for site '${slug}' at ${specPath}`);
@@ -136,6 +143,10 @@ test.describe(`Site verification: ${slug}`, () => {
     const desktopPng = path.join(evidenceDir, 'desktop.png');
     await page.screenshot({ path: desktopPng, fullPage: true });
     expect(fs.statSync(desktopPng).size, 'desktop.png must be non-empty').toBeGreaterThan(5000);
+    expect(
+      fs.statSync(path.join(trackedEvidenceDir, 'desktop.png')).size,
+      'committed sites/<slug>/evidence/desktop.png must be non-empty',
+    ).toBeGreaterThan(5000);
 
     // 7b. Mobile Viewport (375x812) Layout & Overflow Check + Screenshot (Gate 8b)
     await page.setViewportSize({ width: 375, height: 812 });
@@ -152,6 +163,10 @@ test.describe(`Site verification: ${slug}`, () => {
     const mobilePng = path.join(evidenceDir, 'mobile.png');
     await page.screenshot({ path: mobilePng, fullPage: true });
     expect(fs.statSync(mobilePng).size, 'mobile.png must be non-empty').toBeGreaterThan(5000);
+    expect(
+      fs.statSync(path.join(trackedEvidenceDir, 'mobile.png')).size,
+      'committed sites/<slug>/evidence/mobile.png must be non-empty',
+    ).toBeGreaterThan(5000);
 
     // 2 & 3. Zero Console/Page Errors, Zero Failed Assets, Zero Outbound External Requests
     expect(guards.externalRequests, `External outbound requests blocked: ${guards.externalRequests.join(', ')}`).toEqual([]);

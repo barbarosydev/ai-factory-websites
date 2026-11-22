@@ -12,7 +12,7 @@ brew bundle --no-upgrade
 
 ## 2. Pinned CLI tools (`mise`)
 
-`mise.toml` pins the exact versions of Node, Task, Conftest, ShellCheck, actionlint, jq, yq, pre-commit, and gitleaks used both locally and in GitHub Actions:
+`mise.toml` pins the exact versions of Node, Task, Conftest, ShellCheck, Ruff, actionlint, jq, yq, pre-commit, and gitleaks used both locally and in GitHub Actions:
 
 ```bash
 mise install

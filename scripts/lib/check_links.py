@@ -91,6 +91,20 @@ def check_file(root: pathlib.Path, md_file: pathlib.Path) -> list[tuple[int, str
     return broken
 
 
+def check_adr_index(root: pathlib.Path) -> list[str]:
+    """Ensure every numbered ADR in docs/adr/ is linked in docs/adr/README.md."""
+    adr_dir = root / "docs" / "adr"
+    index = adr_dir / "README.md"
+    if not index.is_file():
+        return []
+    text = index.read_text(encoding="utf-8")
+    missing: list[str] = []
+    for adr in sorted(adr_dir.glob("[0-9][0-9][0-9][0-9]-*.md")):
+        if f"({adr.name})" not in text:
+            missing.append(f"docs/adr/README.md: missing index link for {adr.name}")
+    return missing
+
+
 def main(argv: list[str]) -> int:
     root = (
         pathlib.Path(argv[1]).resolve()
@@ -103,6 +117,9 @@ def main(argv: list[str]) -> int:
         for lineno, target in check_file(root, md_file):
             print(f"{md_file.relative_to(root)}:{lineno}: {target}")
             count += 1
+    for msg in check_adr_index(root):
+        print(msg)
+        count += 1
     if count:
         return 1
     print(f"links ok: {len(files)} Markdown files checked")
