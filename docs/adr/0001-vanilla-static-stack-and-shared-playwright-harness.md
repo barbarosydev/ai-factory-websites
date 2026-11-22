@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Accepted (amended by [ADR 0002](0002-public-repo-governance-and-readonly-verification.md))
 
 ## Date
 

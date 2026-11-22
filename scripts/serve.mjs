@@ -35,6 +35,7 @@ function parseArgs(argv) {
 }
 
 const { port, root } = parseArgs(process.argv.slice(2));
+const sitesRoot = path.resolve(root, 'sites');
 
 const server = http.createServer((req, res) => {
   const reqUrl = new URL(req.url || '/', `http://127.0.0.1:${port}`);
@@ -52,7 +53,7 @@ const server = http.createServer((req, res) => {
   }
 
   const candidate = path.resolve(root, relPath);
-  if (!candidate.startsWith(root + path.sep) && candidate !== root) {
+  if (!candidate.startsWith(sitesRoot + path.sep)) {
     res.writeHead(403);
     res.end('Forbidden');
     return;

@@ -18,7 +18,11 @@ info "lint"
 "$REPO_ROOT/scripts/lint.sh"
 
 info "test"
-"$REPO_ROOT/scripts/test.sh"
+if [[ -z "${SITE_SLUG:-}" ]]; then
+  ALL_SITES="${ALL_SITES:-1}" "$REPO_ROOT/scripts/test.sh"
+else
+  "$REPO_ROOT/scripts/test.sh"
+fi
 
 require_cmd gitleaks
 if [[ "$mode" == "staged" ]]; then

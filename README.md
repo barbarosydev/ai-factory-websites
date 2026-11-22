@@ -56,3 +56,4 @@ ALL_SITES=1 task ci
 ## Architecture Decisions
 
 - [0001. Vanilla static stack and shared Playwright harness](docs/adr/0001-vanilla-static-stack-and-shared-playwright-harness.md)
+- [0002. Public repository governance, `/sites/` loopback isolation, and read-only Playwright verification](docs/adr/0002-public-repo-governance-and-readonly-verification.md)
