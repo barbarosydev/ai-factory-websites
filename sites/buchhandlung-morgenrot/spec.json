@@ -1,0 +1,91 @@
+{
+  "schema_version": "v1",
+  "site_slug": "buchhandlung-morgenrot",
+  "operation": "create",
+  "category": "Local Store",
+  "page_title": "Buchhandlung Morgenrot — Literary Fiction \u0026 Author Readings in Neukölln",
+  "tagline": "Independent neighborhood bookshop specializing in literary fiction, translated essays, and weekend author readings.",
+  "theme": {
+    "primary_color": "#1F2421",
+    "background_color": "#F8F4EC",
+    "accent_color": "#B85D3B",
+    "font_pairing": "Lora, serif + Open Sans, sans-serif"
+  },
+  "navigation": [
+    {
+      "label": "Home",
+      "href": "#hero"
+    },
+    {
+      "label": "Curated Shelves",
+      "href": "#curated-shelves"
+    },
+    {
+      "label": "Events",
+      "href": "#events"
+    },
+    {
+      "label": "Visit",
+      "href": "#visit"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "heading": "Welcome to Buchhandlung Morgenrot",
+      "purpose": "Welcome visitors to our neighborhood sanctuary for literary fiction and translated essays.",
+      "required_keywords": [
+        "Literary Fiction",
+        "Neukölln"
+      ],
+      "required_elements": [
+        "h1",
+        "p",
+        "a"
+      ]
+    },
+    {
+      "id": "curated-shelves",
+      "heading": "Curated Shelves",
+      "purpose": "Showcase our hand-picked selections of literary fiction and translated essays.",
+      "required_keywords": [
+        "Curated Shelves",
+        "Translated Essays"
+      ],
+      "required_elements": [
+        "h2",
+        "p",
+        "ul"
+      ]
+    },
+    {
+      "id": "events",
+      "heading": "Reading Events",
+      "purpose": "Join us for evening author readings and community gatherings.",
+      "required_keywords": [
+        "Author Readings",
+        "Evening Events"
+      ],
+      "required_elements": [
+        "h2",
+        "p",
+        "ul"
+      ]
+    },
+    {
+      "id": "visit",
+      "heading": "Visit Us",
+      "purpose": "Opening Hours: Tue–Sat 10:00–19:00. Visit us at Weserstraße 48, 12045 Berlin.",
+      "required_keywords": [
+        "Weserstraße 48",
+        "Opening Hours"
+      ],
+      "required_elements": [
+        "h2",
+        "p",
+        "address"
+      ]
+    }
+  ],
+  "footer_text": "© 2026 Buchhandlung Morgenrot · Weserstraße 48, 12045 Berlin"
+}
