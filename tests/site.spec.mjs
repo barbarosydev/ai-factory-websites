@@ -94,6 +94,17 @@ test.describe(`Site verification: ${slug}`, () => {
     expect(docChecks.hasMain, '<main> landmark required').toBe(true);
     expect(docChecks.hasFooter, '<footer> landmark required').toBe(true);
 
+    // 3b. Spec Navigation & Footer Fidelity
+    for (const navItem of spec.navigation || []) {
+      const navLink = page.locator(`header a[href="${navItem.href}"], nav a[href="${navItem.href}"]`).first();
+      await expect(navLink, `Navigation link ${navItem.label} (${navItem.href}) must exist in header/nav`).toBeVisible();
+    }
+    if (spec.footer_text) {
+      const footerText = (await page.locator('footer').innerText()).replace(/\s+/g, ' ').trim().toLowerCase();
+      const expectedFooter = spec.footer_text.replace(/\s+/g, ' ').trim().toLowerCase();
+      expect(footerText, `<footer> must include spec.footer_text`).toContain(expectedFooter);
+    }
+
     // 4 & 5. Required Sections, Headings & Keywords
     for (const section of spec.sections || []) {
       const locator = page.locator(`#${section.id}`);
@@ -107,6 +118,24 @@ test.describe(`Site verification: ${slug}`, () => {
           sectionText.includes(kw.toLowerCase()),
           `Section #${section.id} missing required keyword '${kw}'`,
         ).toBe(true);
+      }
+
+      if (process.env.STRICT_COPY === '1' && section.purpose && section.purpose.trim().length >= 25) {
+        const normalizedPurpose = section.purpose.replace(/\s+/g, ' ').trim().toLowerCase();
+        const paragraphs = await locator.locator('p').allInnerTexts();
+        for (const p of paragraphs) {
+          expect(
+            p.replace(/\s+/g, ' ').trim().toLowerCase(),
+            `Section #${section.id} leaked spec.purpose instruction verbatim into <p>`,
+          ).not.toBe(normalizedPurpose);
+        }
+        const cards = await locator.locator('.card p').allInnerTexts();
+        for (const kw of section.required_keywords || []) {
+          const stubPattern = `${section.heading} — ${kw}`.toLowerCase();
+          for (const c of cards) {
+            expect(c.trim().toLowerCase(), `Section #${section.id} contains stub card copy`).not.toBe(stubPattern);
+          }
+        }
       }
     }
 
@@ -129,15 +158,29 @@ test.describe(`Site verification: ${slug}`, () => {
     }
 
     // 7a. Desktop Layout & Overflow Check + Screenshot (Gate 8a)
-    const desktopMetrics = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      innerWidth: window.innerWidth,
-      mainHeight: document.querySelector('main')?.getBoundingClientRect().height || 0,
-    }));
+    const desktopMetrics = await page.evaluate(() => {
+      const vw = window.innerWidth;
+      const overflowing = Array.from(document.querySelectorAll('main *'))
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && r.height > 0 && r.right > vw + 1;
+        })
+        .map((el) => el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ')[0] : ''));
+      return {
+        scrollWidth: document.documentElement.scrollWidth,
+        innerWidth: vw,
+        mainHeight: document.querySelector('main')?.getBoundingClientRect().height || 0,
+        overflowing,
+      };
+    });
     expect(
       desktopMetrics.scrollWidth,
       `Desktop horizontal overflow: scrollWidth=${desktopMetrics.scrollWidth} > innerWidth=${desktopMetrics.innerWidth}`,
     ).toBeLessThanOrEqual(desktopMetrics.innerWidth);
+    expect(
+      desktopMetrics.overflowing,
+      `Desktop child elements extend past viewport: ${desktopMetrics.overflowing.join(', ')}`,
+    ).toEqual([]);
     expect(desktopMetrics.mainHeight, '<main> height must be > 300px').toBeGreaterThan(300);
 
     const desktopPng = path.join(evidenceDir, 'desktop.png');
@@ -151,14 +194,28 @@ test.describe(`Site verification: ${slug}`, () => {
     // 7b. Mobile Viewport (375x812) Layout & Overflow Check + Screenshot (Gate 8b)
     await page.setViewportSize({ width: 375, height: 812 });
     await page.waitForTimeout(100);
-    const mobileMetrics = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      innerWidth: window.innerWidth,
-    }));
+    const mobileMetrics = await page.evaluate(() => {
+      const vw = window.innerWidth;
+      const overflowing = Array.from(document.querySelectorAll('main *'))
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && r.height > 0 && r.right > vw + 1;
+        })
+        .map((el) => el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ')[0] : ''));
+      return {
+        scrollWidth: document.documentElement.scrollWidth,
+        innerWidth: vw,
+        overflowing,
+      };
+    });
     expect(
       mobileMetrics.scrollWidth,
       `Mobile horizontal overflow: scrollWidth=${mobileMetrics.scrollWidth} > innerWidth=${mobileMetrics.innerWidth}`,
     ).toBeLessThanOrEqual(mobileMetrics.innerWidth);
+    expect(
+      mobileMetrics.overflowing,
+      `Mobile child elements extend past viewport: ${mobileMetrics.overflowing.join(', ')}`,
+    ).toEqual([]);
 
     const mobilePng = path.join(evidenceDir, 'mobile.png');
     await page.screenshot({ path: mobilePng, fullPage: true });

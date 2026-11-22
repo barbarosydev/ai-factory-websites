@@ -10,3 +10,4 @@ paths:
 - Never hardcode business names or site-specific copy inside `tests/site.spec.mjs`.
 - Always block external network requests (`127.0.0.1` / `localhost` only) so offline/security sanity is enforced deterministically.
 - Keep `task test` read-only on tracked `sites/<slug>/evidence/*.png` files by default; only overwrite tracked evidence when `WRITE_EVIDENCE=1` is set (or when initial evidence files do not exist yet).
+- Verify `spec.navigation`, `spec.footer_text`, and child-element horizontal bounding-box overflow; run `STRICT_COPY=1` to reject leaked `section.purpose` prompt text or stub cards.
