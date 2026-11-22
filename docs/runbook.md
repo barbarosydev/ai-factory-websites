@@ -12,10 +12,11 @@
 
 ## Verifying a Site Locally
 
-Run the 8-gate Playwright verification suite (`tests/site.spec.mjs`) against any site under `sites/<slug>/` (read-only by default; pass `WRITE_EVIDENCE=1` when intentionally refreshing `sites/<slug>/evidence/*.png`):
+Run the 8-gate Playwright verification suite (`tests/site.spec.mjs`) against any site under `sites/<slug>/` (read-only by default; pass `WRITE_EVIDENCE=1` when intentionally refreshing `sites/<slug>/evidence/*.png`, and `STRICT_COPY=1` to enforce anti-prompt-leak and anti-stub-card checks as `ai-factory` does):
 
 ```bash
 SITE_SLUG=_template task test
+STRICT_COPY=1 SITE_SLUG=_template task test
 WRITE_EVIDENCE=1 SITE_SLUG=_template task test
 ```
 
