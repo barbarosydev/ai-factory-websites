@@ -94,6 +94,24 @@ test.describe(`Site verification: ${slug}`, () => {
     expect(docChecks.hasMain, '<main> landmark required').toBe(true);
     expect(docChecks.hasFooter, '<footer> landmark required').toBe(true);
 
+    // 1b. Stylesheet & Theme Presence
+    const cssChecks = await page.evaluate(() => {
+      const hasLinkedCss = document.querySelector('link[rel="stylesheet"]') !== null;
+      let ruleCount = 0;
+      for (const sheet of Array.from(document.styleSheets)) {
+        try {
+          ruleCount += sheet.cssRules?.length || 0;
+        } catch {
+          // ignore cross-origin if any (blocked separately)
+        }
+      }
+      return { hasLinkedCss, sheetCount: document.styleSheets.length, ruleCount };
+    });
+    if (cssChecks.hasLinkedCss) {
+      expect(cssChecks.sheetCount, 'Linked stylesheet must load').toBeGreaterThan(0);
+      expect(cssChecks.ruleCount, 'Stylesheet must contain at least 3 CSS rules (cannot be empty or wiped)').toBeGreaterThanOrEqual(3);
+    }
+
     // 3b. Spec Navigation & Footer Fidelity
     for (const navItem of spec.navigation || []) {
       const navLink = page.locator(`header a[href="${navItem.href}"], nav a[href="${navItem.href}"]`).first();
