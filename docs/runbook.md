@@ -12,7 +12,7 @@
 
 ## Verifying a Site Locally
 
-Run the 8-gate Playwright verification suite (`tests/site.spec.mjs`) against any site under `sites/<slug>/` (read-only by default; pass `WRITE_EVIDENCE=1` when intentionally refreshing `sites/<slug>/evidence/*.png`, and `STRICT_COPY=1` to enforce anti-prompt-leak and anti-stub-card checks as `ai-factory` does):
+Run the Playwright verification suite (`tests/site.spec.mjs`) against any site under `sites/<slug>/`. It checks navigation and footer content against `spec.json`, desktop/mobile child-element overflow, and (with `STRICT_COPY=1`) prompt leaks and stub cards. Tests are read-only by default; pass `WRITE_EVIDENCE=1` only when intentionally creating or refreshing tracked screenshots:
 
 ```bash
 SITE_SLUG=_template task test

@@ -30,6 +30,7 @@ Use `task` for everything; logic lives in `scripts/`.
 4. No secrets in files, sites, commits, or PRs (`gitleaks` enforces this in pre-commit and CI).
 5. Pin every tool (`mise.toml`), npm package (`package.json` + `package-lock.json`), and GitHub Action (full commit SHA).
 6. Scripts follow `.claude/rules/scripts.md`: bash with `set -euo pipefail`, shellcheck clean, deterministic PASS/WARN/FAIL reporting.
+7. Playwright verifies navigation and footer content against `spec.json`, checks child-element overflow at desktop and mobile sizes, and supports `STRICT_COPY=1` to catch prompt leaks and stub cards.
 
 ## Review role
 

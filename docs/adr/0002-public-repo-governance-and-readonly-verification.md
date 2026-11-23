@@ -19,7 +19,7 @@ Accepted
 ## Decision
 
 - Restrict `scripts/serve.mjs` to serve only files under `sites/` (plus `/__health`), returning `403 Forbidden` for any other path.
-- Make `tests/site.spec.mjs` read-only on tracked `sites/<slug>/evidence/*.png` by default (writing verification screenshots to gitignored `test-results/evidence/<slug>/` while asserting committed evidence exists), and overwrite `sites/<slug>/evidence/{desktop,mobile}.png` only when `WRITE_EVIDENCE=1` is set (or when initial evidence does not exist yet).
+- Make `tests/site.spec.mjs` read-only on `sites/<slug>/evidence/*.png` by default (writing verification screenshots to gitignored `test-results/evidence/<slug>/` while asserting committed evidence exists), and create or overwrite `sites/<slug>/evidence/{desktop,mobile}.png` only when `WRITE_EVIDENCE=1` is set.
 - Run all sites (`ALL_SITES=1`) by default during `scripts/ci.sh` when `SITE_SLUG` is not set.
 - Enforce `spec.navigation` link visibility, `spec.footer_text` rendering, child-element bounding-box horizontal overflow checks (preventing `overflow-x: hidden` from masking clipped elements), and an opt-in `STRICT_COPY=1` anti-prompt-leak / anti-stub-card gate in `tests/site.spec.mjs`.
 - Commit MIT `LICENSE`, `SECURITY.md`, and `.github/CODEOWNERS`, and enforce their presence and ADR index synchronization (`docs/adr/README.md`) in `scripts/lint.sh`.

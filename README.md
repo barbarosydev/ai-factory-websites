@@ -26,7 +26,7 @@ Static single-page websites generated, verified, and maintained autonomously by 
 
 | Slug | Category | Status | Source |
 | --- | --- | --- | --- |
-| [`_template`](sites/_template/index.html) | Reference template | Active | Baseline fixture for the 8-gate Playwright harness |
+| [`_template`](sites/_template/index.html) | Reference template | Active | Baseline for Playwright navigation, footer, layout, and strict-copy gates |
 | [`kaffeekultur-berlin`](sites/kaffeekultur-berlin/index.html) | Coffee Shop | Active | Built via [Issue #5](https://github.com/barbarosydev/ai-factory-websites/issues/5) -> PR #6; updated via [Issue #9](https://github.com/barbarosydev/ai-factory-websites/issues/9) |
 | [`konditorei-flora-berlin`](sites/konditorei-flora-berlin/index.html) | Bakery / Patisserie | Active | Resumed from `factory:waiting` via [Issue #7](https://github.com/barbarosydev/ai-factory-websites/issues/7) -> auto-merged PR #8 |
 
