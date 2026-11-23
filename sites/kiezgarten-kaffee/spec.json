@@ -1,0 +1,103 @@
+{
+  "schema_version": "v1",
+  "site_slug": "kiezgarten-kaffee",
+  "operation": "create",
+  "category": "Coffee Shop",
+  "page_title": "Kiezgarten Kaffee — Specialty Coffee \u0026 Urban Garden Vibes",
+  "tagline": "A peaceful urban garden oasis for specialty coffee and community in Berlin-Kreuzberg.",
+  "theme": {
+    "primary_color": "#3E4C3B",
+    "background_color": "#F9F7F2",
+    "accent_color": "#D4A373",
+    "font_pairing": "Playfair Display, serif + Inter, sans-serif"
+  },
+  "navigation": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Menu",
+      "href": "#menu"
+    },
+    {
+      "label": "Location",
+      "href": "#location"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "heading": "Kiezgarten Kaffee",
+      "purpose": "Welcome visitors to the urban garden oasis with a clear call to action.",
+      "required_keywords": [
+        "Kiezgarten Kaffee",
+        "Berlin-Kreuzberg"
+      ],
+      "required_elements": [
+        "h1",
+        "p",
+        "a"
+      ]
+    },
+    {
+      "id": "about",
+      "heading": "Our Story",
+      "purpose": "Share the narrative of the independent specialty coffee shop and its garden roots.",
+      "required_keywords": [
+        "Urban Garden",
+        "Specialty Coffee"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "menu",
+      "heading": "Sample Menu",
+      "purpose": "Display a curated selection of coffee and pastries without specific pricing.",
+      "required_keywords": [
+        "Espresso",
+        "Pour-over",
+        "Pastries"
+      ],
+      "required_elements": [
+        "h2",
+        "ul"
+      ]
+    },
+    {
+      "id": "location",
+      "heading": "Find Us",
+      "purpose": "Describe the neighborhood location without providing a specific street address.",
+      "required_keywords": [
+        "Berlin-Kreuzberg",
+        "Neighborhood"
+      ],
+      "required_elements": [
+        "h2",
+        "p"
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Join the Community",
+      "purpose": "A call to action for visitors to reach out or visit the shop.",
+      "required_keywords": [
+        "Get in touch",
+        "Community"
+      ],
+      "required_elements": [
+        "h2",
+        "p",
+        "a"
+      ]
+    }
+  ],
+  "footer_text": "© 2026 Kiezgarten Kaffee · Berlin-Kreuzberg"
+}
