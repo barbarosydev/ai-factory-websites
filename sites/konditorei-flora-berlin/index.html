@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
-      <a class="brand" href="#top">Konditorei Flora Berlin — Vegan Patisserie &amp; Bakery</a>
+      <a class="brand" href="#top">Konditorei Flora Berlin</a>
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="nav-list">
           <li><a href="#about">About</a></li>
@@ -22,116 +22,118 @@
     </div>
   </header>
 
-  <main>
-    <section id="hero" class="section hero-section">
+  <main role="main">
+    <section id="hero" class="section hero-section" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Bakery</span>
-          <h1>Konditorei Flora Berlin</h1>
+          <span class="eyebrow">Artisanal Bakery</span>
+          <h1 id="hero-heading">Konditorei Flora Berlin</h1>
           <p class="lead">Artisanal plant-based pastries and sourdough bread in the heart of Prenzlauer Berg.</p>
-          <p>Plant-based pastries, baked by hand and guided by the seasons.</p>
+          <p>Experience the finest vegan baking, crafted with passion and seasonal ingredients.</p>
+        </div>
         <div class="cards-grid">
-          <article class="card"><h3>Konditorei Flora</h3><p>Handmade vegan cakes and pastries, baked fresh each morning.</p></article>
-          <article class="card"><h3>Prenzlauer Berg</h3><p>A welcoming neighborhood bakery on Kollwitzstraße.</p></article>
+          <article class="card"><h3 id="card-flora">Konditorei Flora</h3><p>Handmade vegan cakes and pastries, baked fresh daily in Prenzlauer Berg.</p></article>
+          <article class="card"><h3 id="card-neighborhood">Prenzlauer Berg</h3><p>A welcoming neighborhood patisserie, dedicated to plant-based excellence.</p></article>
         </div>
         <ul class="feature-list">
-          <li>Konditorei Flora</li>
-          <li>Prenzlauer Berg</li>
+          <li>Certified Plant-Based</li>
+          <li>Artisanal Sourdough</li>
+          <li>Seasonal Treats</li>
         </ul>
-        <p><a class="text-link" href="#about">Learn more about Konditorei Flora Berlin</a></p>
-          <div class="hero-actions"><a class="btn-primary" href="#about">Explore Konditorei Flora Berlin — Vegan Patisserie &amp; Bakery</a></div>
-        </div>
+        <p><a class="text-link" href="#about">Discover Our Philosophy &rarr;</a></p>
+        <div class="hero-actions"><a class="btn-primary" href="#menu">View Our Menu</a></div>
       </div>
     </section>
 
-    <section id="about" class="section content-section">
+    <section id="about" class="section content-section" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-header">
-          <h2>Our Plant-Based Patisserie</h2>
-          <p class="section-purpose">We bake entirely with plant-based ingredients, pairing classic pastry techniques with seasonal produce.</p>
+          <h2 id="about-heading">Our Plant-Based Patisserie</h2>
+          <p>We are committed to the art of plant-based baking. Our patisserie philosophy centers on using wholesome, seasonal ingredients to create exquisite, dairy-free treats.</p>
         </div>
         <div class="cards-grid">
-          <article class="card"><h3>Plant-based</h3><p>Thoughtful recipes make every bake dairy- and egg-free.</p></article>
-          <article class="card"><h3>Patisserie</h3><p>Each tart and cake is finished by hand in our neighborhood kitchen.</p></article>
+          <article class="card"><h3 id="card-plant">Plant-based Commitment</h3><p>Every recipe is thoughtfully designed to be 100% plant-based, ensuring deliciousness without animal products.</p></article>
+          <article class="card"><h3 id="card-artisan">Artisanal Craft</h3><p>Our pastries are not mass-produced; they are finished by hand, celebrating traditional techniques.</p></article>
         </div>
         <ul class="feature-list">
-          <li>Plant-based</li>
-          <li>Patisserie</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="menu" class="section content-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Signature Pastries &amp; Sourdough</h2>
-          <p class="section-purpose">Choose from slow-fermented sourdough and a changing selection of signature pastries.</p>
-        </div>
-        <div class="cards-grid">
-          <article class="card"><h3>Sourdough</h3><p>Our loaves ferment slowly for a crisp crust and a tender crumb.</p></article>
-          <article class="card"><h3>Pastries</h3><p>Find flaky croissants, fruit tarts, and a daily cake at the counter.</p></article>
-        </div>
-        <ul class="feature-list">
-          <li>Sourdough</li>
-          <li>Pastries</li>
+          <li>Vegan Certified</li>
+          <li>Handcrafted Excellence</li>
         </ul>
       </div>
     </section>
 
-    <section id="hours" class="section content-section">
+    <section id="menu" class="section content-section" aria-labelledby="menu-heading">
       <div class="container">
         <div class="section-header">
-          <h2>Opening Hours</h2>
-          <p class="section-purpose">Stop by Tuesday through Sunday for fresh bakes, coffee, and a seat by the window.</p>
+          <h2 id="menu-heading">Signature Pastries &amp; Sourdough</h2>
+          <p>Explore our selection of slow-fermented sourdough breads and seasonal vegan pastries. We feature unique Winter Pastries throughout the year.</p>
         </div>
         <div class="cards-grid">
-          <article class="card"><h3>Tue–Sun</h3><p>We are closed on Mondays while the team prepares for the week.</p></article>
-          <article class="card"><h3>08:00–18:00</h3><p>Come in from breakfast through the late afternoon.</p></article>
+          <article class="card"><h3 id="card-sourdough">Artisan Sourdough</h3><p>Our sourdough loaves are slow-fermented, resulting in a crisp crust and a wonderfully tender crumb.</p></article>
+          <article class="card"><h3 id="card-pastries">Signature Pastries</h3><p>From delicate tarts to rich cakes, our pastries are a daily delight, perfect for any occasion.</p></article>
         </div>
         <ul class="feature-list">
-          <li>Tue–Sun</li>
-          <li>08:00–18:00</li>
+          <li>Daily Sourdough Breads</li>
+          <li>Seasonal Pastries</li>
+          <li>Winter Pastries</li>
         </ul>
       </div>
     </section>
 
-    <section id="location" class="section content-section">
+    <section id="hours" class="section content-section" aria-labelledby="hours-heading">
       <div class="container">
         <div class="section-header">
-          <h2>Visit Us</h2>
-          <p class="section-purpose">Find us on Kollwitzstraße, a short walk from the cafés and galleries of Prenzlauer Berg.</p>
+          <h2 id="hours-heading">Opening Hours</h2>
+          <p>We are open Tuesday through Sunday, offering fresh bakes and a cozy atmosphere for you to enjoy.</p>
         </div>
         <div class="cards-grid">
-          <article class="card"><h3>Kollwitzstraße 18</h3><p>Look for the sage-green storefront at number 18.</p></article>
-          <article class="card"><h3>Prenzlauer Berg</h3><p>Our bakery is in the heart of this lively Berlin neighborhood.</p></article>
+          <article class="card"><h3 id="card-days">Tue–Sun</h3><p>We are closed on Mondays, allowing our team to rest and prepare for the week's baking.</p></article>
+          <article class="card"><h3 id="card-time">08:00–18:00</h3><p>Stop by early for breakfast or in the afternoon for a sweet treat.</p></article>
         </div>
         <ul class="feature-list">
-          <li>Kollwitzstraße 18</li>
-          <li>Prenzlauer Berg</li>
+          <li>Tuesday to Sunday</li>
+          <li>08:00 to 18:00</li>
         </ul>
       </div>
     </section>
 
-    <section id="contact" class="section content-section">
+    <section id="location" class="section content-section" aria-labelledby="location-heading">
       <div class="container">
         <div class="section-header">
-          <h2>Get in Touch</h2>
-          <p class="section-purpose">Call or email us with questions about ingredients, custom orders, or your next visit.</p>
+          <h2 id="location-heading">Visit Us in Prenzlauer Berg</h2>
+          <p>Find Konditorei Flora at Kollwitzstraße 18. We are nestled in the vibrant heart of Prenzlauer Berg.</p>
         </div>
         <div class="cards-grid">
-          <article class="card"><h3>+49 30 5550192</h3><p>We are happy to help with order and ingredient enquiries.</p></article>
+          <article class="card"><h3 id="card-address">Kollwitzstraìee 18</h3><p>We are located at Kollwitzstraìee 18, a beautiful spot in Berlin.</p></article>
+          <article class="card"><h3 id="card-neighborhood">Prenzlauer Berg</h3><p>Come visit us in the charming and lively neighborhood of Prenzlauer Berg.</p></article>
         </div>
         <ul class="feature-list">
-          <li>+49 30 5550192</li>
+          <li>Kollwitzstraìee 18</li>
+          <li>Prenzlauer Berg, Berlin</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section content-section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="contact-heading">Get in Touch</h2>
+          <p>We would love to hear from you! Call us or send an email with questions about ingredients or custom orders.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="card"><h3 id="card-phone">+49 30 5550192</h3><p>Call us at +49 30 5550192 for inquiries about our plant-based offerings.</p></article>
+        </div>
+        <ul class="feature-list">
+          <li>Phone: +49 30 5550192</li>
         </ul>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <p>© 2026 Konditorei Flora Berlin · Kollwitzstraße 18, 10405 Berlin-Prenzlauer Berg</p>
+      <p>&copy; 2026 Konditorei Flora Berlin · Kollwitzstraüee 18, 10405 Berlin-Prenzlauer Berg</p>
     </div>
   </footer>
   <script src="script.js"></script>

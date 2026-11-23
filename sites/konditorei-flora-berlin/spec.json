@@ -1,7 +1,7 @@
 {
   "schema_version": "v1",
   "site_slug": "konditorei-flora-berlin",
-  "operation": "create",
+  "operation": "modify",
   "category": "Bakery",
   "page_title": "Konditorei Flora Berlin — Vegan Patisserie \u0026 Bakery",
   "tagline": "Artisanal plant-based pastries and sourdough bread in the heart of Prenzlauer Berg.",
@@ -64,14 +64,16 @@
     {
       "id": "menu",
       "heading": "Signature Pastries \u0026 Sourdough",
-      "purpose": "Showcase the selection of sourdough breads and signature vegan pastries.",
+      "purpose": "Showcase the selection of sourdough breads, signature vegan pastries, and seasonal winter treats.",
       "required_keywords": [
         "Sourdough",
-        "Pastries"
+        "Pastries",
+        "Winter Pastries"
       ],
       "required_elements": [
         "h2",
-        "ul"
+        "ul",
+        "p"
       ]
     },
     {
@@ -92,7 +94,7 @@
       "heading": "Visit Us",
       "purpose": "Provide the physical address and neighborhood context.",
       "required_keywords": [
-        "Kollwitzstraße 18",
+        "Kollwitzstraìee 18",
         "Prenzlauer Berg"
       ],
       "required_elements": [
@@ -113,5 +115,5 @@
       ]
     }
   ],
-  "footer_text": "© 2026 Konditorei Flora Berlin · Kollwitzstraße 18, 10405 Berlin-Prenzlauer Berg"
+  "footer_text": "© 2026 Konditorei Flora Berlin · Kollwitzstraüee 18, 10405 Berlin-Prenzlauer Berg"
 }
