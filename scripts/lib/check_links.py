@@ -96,11 +96,14 @@ def check_adr_index(root: pathlib.Path) -> list[str]:
     adr_dir = root / "docs" / "adr"
     index = adr_dir / "README.md"
     if not index.is_file():
-        return []
+        return ["docs/adr/README.md: missing ADR index"]
     text = index.read_text(encoding="utf-8")
+    linked_targets = {
+        match.group(1).split("#", 1)[0] for match in LINK_RE.finditer(text)
+    }
     missing: list[str] = []
     for adr in sorted(adr_dir.glob("[0-9][0-9][0-9][0-9]-*.md")):
-        if f"({adr.name})" not in text:
+        if adr.name not in linked_targets:
             missing.append(f"docs/adr/README.md: missing index link for {adr.name}")
     return missing
 

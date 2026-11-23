@@ -7,10 +7,7 @@ const worktreeRoot = process.env.SITE_WORKTREE_ROOT || process.cwd();
 const siteDir = path.join(worktreeRoot, 'sites', slug);
 const specPath = path.join(siteDir, 'spec.json');
 const trackedEvidenceDir = path.join(siteDir, 'evidence');
-const hasCommittedEvidence =
-  fs.existsSync(path.join(trackedEvidenceDir, 'desktop.png')) &&
-  fs.existsSync(path.join(trackedEvidenceDir, 'mobile.png'));
-const writeTrackedEvidence = process.env.WRITE_EVIDENCE === '1' || !hasCommittedEvidence;
+const writeTrackedEvidence = process.env.WRITE_EVIDENCE === '1';
 const evidenceDir = writeTrackedEvidence
   ? trackedEvidenceDir
   : path.join(process.cwd(), 'test-results', 'evidence', slug);
@@ -61,6 +58,14 @@ function attachOfflineAndErrorGuards(page) {
 
 test.describe(`Site verification: ${slug}`, () => {
   test('passes all 8 deterministic gates on desktop and mobile', async ({ page }) => {
+    expect(
+      Array.isArray(spec.navigation) && spec.navigation.length > 0,
+      'spec.navigation must contain at least one link',
+    ).toBe(true);
+    expect(
+      typeof spec.footer_text === 'string' && spec.footer_text.trim().length > 0,
+      'spec.footer_text must be a non-empty string',
+    ).toBe(true);
     fs.mkdirSync(evidenceDir, { recursive: true });
     const guards = attachOfflineAndErrorGuards(page);
     await guards.installNetworkGate();
@@ -138,14 +143,16 @@ test.describe(`Site verification: ${slug}`, () => {
         ).toBe(true);
       }
 
-      if (process.env.STRICT_COPY === '1' && section.purpose && section.purpose.trim().length >= 25) {
-        const normalizedPurpose = section.purpose.replace(/\s+/g, ' ').trim().toLowerCase();
-        const paragraphs = await locator.locator('p').allInnerTexts();
-        for (const p of paragraphs) {
-          expect(
-            p.replace(/\s+/g, ' ').trim().toLowerCase(),
-            `Section #${section.id} leaked spec.purpose instruction verbatim into <p>`,
-          ).not.toBe(normalizedPurpose);
+      if (process.env.STRICT_COPY === '1') {
+        if (section.purpose?.trim()) {
+          const normalizedPurpose = section.purpose.replace(/\s+/g, ' ').trim().toLowerCase();
+          const paragraphs = await locator.locator('p').allInnerTexts();
+          for (const p of paragraphs) {
+            expect(
+              p.replace(/\s+/g, ' ').trim().toLowerCase(),
+              `Section #${section.id} leaked spec.purpose instruction verbatim into <p>`,
+            ).not.toBe(normalizedPurpose);
+          }
         }
         const cards = await locator.locator('.card p').allInnerTexts();
         for (const kw of section.required_keywords || []) {
@@ -181,7 +188,7 @@ test.describe(`Site verification: ${slug}`, () => {
       const overflowing = Array.from(document.querySelectorAll('main *'))
         .filter((el) => {
           const r = el.getBoundingClientRect();
-          return r.width > 0 && r.height > 0 && r.right > vw + 1;
+          return r.width > 0 && r.height > 0 && (r.left < -1 || r.right > vw + 1);
         })
         .map((el) => el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ')[0] : ''));
       return {
@@ -217,7 +224,7 @@ test.describe(`Site verification: ${slug}`, () => {
       const overflowing = Array.from(document.querySelectorAll('main *'))
         .filter((el) => {
           const r = el.getBoundingClientRect();
-          return r.width > 0 && r.height > 0 && r.right > vw + 1;
+          return r.width > 0 && r.height > 0 && (r.left < -1 || r.right > vw + 1);
         })
         .map((el) => el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ')[0] : ''));
       return {
