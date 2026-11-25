@@ -1,7 +1,7 @@
 {
   "schema_version": "v1",
   "site_slug": "buchhandlung-morgenrot",
-  "operation": "create",
+  "operation": "modify",
   "category": "Local Store",
   "page_title": "Buchhandlung Morgenrot — Literary Fiction \u0026 Author Readings in Neukölln",
   "tagline": "Independent neighborhood bookshop specializing in literary fiction, translated essays, and weekend author readings.",
@@ -61,10 +61,11 @@
     {
       "id": "events",
       "heading": "Reading Events",
-      "purpose": "Join us for evening author readings and community gatherings.",
+      "purpose": "Join us for evening author readings and community gatherings. We also host a monthly Sunday Translation Circle (15:00–17:00) for open discussion of newly translated essays over filter coffee.",
       "required_keywords": [
         "Author Readings",
-        "Evening Events"
+        "Evening Events",
+        "Translation Circle"
       ],
       "required_elements": [
         "h2",
