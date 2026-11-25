@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -57,7 +58,7 @@ function attachOfflineAndErrorGuards(page) {
 }
 
 test.describe(`Site verification: ${slug}`, () => {
-  test('passes all 8 deterministic gates on desktop and mobile', async ({ page }) => {
+  test('passes all 9 deterministic gates on desktop and mobile', async ({ page }) => {
     expect(
       Array.isArray(spec.navigation) && spec.navigation.length > 0,
       'spec.navigation must contain at least one link',
@@ -215,6 +216,20 @@ test.describe(`Site verification: ${slug}`, () => {
       fs.statSync(path.join(trackedEvidenceDir, 'desktop.png')).size,
       'committed sites/<slug>/evidence/desktop.png must be non-empty',
     ).toBeGreaterThan(5000);
+
+    // 9. WCAG 2.0/2.1 A & AA Accessibility + Color Contrast (axe-core)
+    const axeResults = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze();
+    const axeSummary = axeResults.violations.map((v) => {
+      const firstTarget = v.nodes[0]?.target?.join(' ') || 'document';
+      const detail = v.nodes[0]?.failureSummary?.replace(/\s+/g, ' ').trim() || v.help;
+      return `[${v.impact || 'unknown'}] ${v.id} (${v.nodes.length} node(s), e.g. ${firstTarget}): ${detail}`;
+    });
+    expect(
+      axeSummary,
+      `WCAG accessibility violations found:\n${axeSummary.join('\n')}`,
+    ).toEqual([]);
 
     // 7b. Mobile Viewport (375x812) Layout & Overflow Check + Screenshot (Gate 8b)
     await page.setViewportSize({ width: 375, height: 812 });

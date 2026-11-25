@@ -1,8 +1,10 @@
 /* Existing styles.css content is preserved as it is complete and applies theme colors. */
 :root {
   --color-primary: #8A9A5B; /* spec.theme.primary_color */
+  --color-primary-ink: #3D4A1F;
   --color-bg: #FAF9F6; /* spec.theme.background_color */
   --color-accent: #D4A373; /* spec.theme.accent_color */
+  --color-accent-ink: #6D4C24;
   --color-surface: #ffffff;
   --color-text: #1c1917;
   --color-muted: #57534e;
@@ -29,7 +31,7 @@ body {
 }
 
 h1, h2, h3 {
-  color: var(--color-primary);
+  color: var(--color-primary-ink);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1.25;
   margin-top: 0;
@@ -63,7 +65,7 @@ h1, h2, h3 {
 .brand {
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--color-primary);
+  color: var(--color-primary-ink);
   text-decoration: none;
 }
 
@@ -77,13 +79,13 @@ h1, h2, h3 {
 }
 
 .nav-list a {
-  color: var(--color-primary);
+  color: var(--color-primary-ink);
   text-decoration: none;
   font-weight: 500;
 }
 
 .nav-list a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
 .section {
@@ -101,7 +103,7 @@ h1, h2, h3 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
   margin-bottom: 0.5rem;
 }
 
@@ -112,7 +114,7 @@ h1, h2, h3 {
 
 .btn-primary {
   display: inline-block;
-  background: var(--color-primary);
+  background: var(--color-primary-ink);
   color: #ffffff;
   padding: 0.75rem 1.35rem;
   border-radius: var(--radius);
@@ -169,7 +171,7 @@ h1, h2, h3 {
 }
 
 .site-footer {
-  background: var(--color-primary);
+  background: var(--color-primary-ink);
   color: #ffffff;
   padding: 2rem 0;
   margin-top: 2rem;
