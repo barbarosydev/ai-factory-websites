@@ -26,9 +26,19 @@ Static single-page websites generated, verified, and maintained autonomously by 
 
 | Slug | Category | Status | Source |
 | --- | --- | --- | --- |
-| [`_template`](sites/_template/index.html) | Reference template | Active | Baseline for Playwright navigation, footer, layout, and strict-copy gates |
-| [`kaffeekultur-berlin`](sites/kaffeekultur-berlin/index.html) | Coffee Shop | Active | Built via [Issue #5](https://github.com/barbarosydev/ai-factory-websites/issues/5) -> PR #6; updated via [Issue #9](https://github.com/barbarosydev/ai-factory-websites/issues/9) |
-| [`konditorei-flora-berlin`](sites/konditorei-flora-berlin/index.html) | Bakery / Patisserie | Active | Resumed from `factory:waiting` via [Issue #7](https://github.com/barbarosydev/ai-factory-websites/issues/7) -> auto-merged PR #8 |
+| [`_template`](sites/_template/index.html) | Reference template | Active | Baseline for Playwright navigation, footer, layout, WCAG AA, and strict-copy gates |
+| [`buchhandlung-morgenrot`](sites/buchhandlung-morgenrot/index.html) | Local Store | Active | Built via Issue #15 -> PR #16; updated via [Issue #26](https://github.com/barbarosydev/ai-factory-websites/issues/26) -> PR #27 |
+| [`kaffeekultur-berlin`](sites/kaffeekultur-berlin/index.html) | Coffee Shop | Active | Built via [Issue #5](https://github.com/barbarosydev/ai-factory-websites/issues/5) -> PR #6; updated via PR #10 & PR #28 |
+| [`kiezgarten-kaffee`](sites/kiezgarten-kaffee/index.html) | Coffee Shop | Active | Built via [Issue #22](https://github.com/barbarosydev/ai-factory-websites/issues/22) -> PR #23; WCAG refresh in PR #28 |
+| [`konditorei-flora-berlin`](sites/konditorei-flora-berlin/index.html) | Bakery / Patisserie | Active | Resumed from `factory:waiting` via [Issue #7](https://github.com/barbarosydev/ai-factory-websites/issues/7) -> PR #8; refreshed in PR #28 |
+
+### Showcase Previews (`1280x800` Verified Evidence)
+
+| Buchhandlung Morgenrot | Kaffeekultur Berlin |
+| --- | --- |
+| ![Buchhandlung Morgenrot desktop](sites/buchhandlung-morgenrot/evidence/desktop.png) | ![Kaffeekultur Berlin desktop](sites/kaffeekultur-berlin/evidence/desktop.png) |
+| **Kiezgarten Kaffee** | **Konditorei Flora Berlin** |
+| ![Kiezgarten Kaffee desktop](sites/kiezgarten-kaffee/evidence/desktop.png) | ![Konditorei Flora Berlin desktop](sites/konditorei-flora-berlin/evidence/desktop.png) |
 
 ## Local Verification & Preview
 
