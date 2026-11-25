@@ -94,7 +94,7 @@
       "heading": "Visit Us",
       "purpose": "Provide the physical address and neighborhood context.",
       "required_keywords": [
-        "Kollwitzstraìee 18",
+        "Kollwitzstraße 18",
         "Prenzlauer Berg"
       ],
       "required_elements": [
@@ -115,5 +115,5 @@
       ]
     }
   ],
-  "footer_text": "© 2026 Konditorei Flora Berlin · Kollwitzstraüee 18, 10405 Berlin-Prenzlauer Berg"
+  "footer_text": "© 2026 Konditorei Flora Berlin · Kollwitzstraße 18, 10405 Berlin-Prenzlauer Berg"
 }

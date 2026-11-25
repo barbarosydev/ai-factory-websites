@@ -6,7 +6,7 @@ Static single-page websites generated, verified, and maintained by the local AI 
 
 - Monorepo of independent static websites under `sites/<site-slug>/`.
 - Every generated website uses plain semantic HTML5, modern CSS, and optional vanilla ES6 JavaScript (`index.html`, `styles.css`, optional `script.js`, `spec.json`, `evidence/desktop.png`, `evidence/mobile.png`).
-- Shared root tooling only: `@playwright/test` is pinned once in root `package.json`. Individual sites under `sites/` never contain their own `package.json` or `node_modules/`.
+- Shared root tooling only: `@playwright/test` and `@axe-core/playwright` are pinned once in root `package.json`. Individual sites under `sites/` never contain their own `package.json` or `node_modules/`.
 - GitHub Issues (`.github/ISSUE_TEMPLATE/`) and `factory:*` labels are the customer intake and human-in-the-loop interface.
 - `ai-factory` works exclusively in isolated git worktrees (`.worktrees/issue-<N>/` on branch `factory/issue-<N>`), never directly on `main`.
 
@@ -30,7 +30,7 @@ Use `task` for everything; logic lives in `scripts/`.
 4. No secrets in files, sites, commits, or PRs (`gitleaks` enforces this in pre-commit and CI).
 5. Pin every tool (`mise.toml`), npm package (`package.json` + `package-lock.json`), and GitHub Action (full commit SHA).
 6. Scripts follow `.claude/rules/scripts.md`: bash with `set -euo pipefail`, shellcheck clean, deterministic PASS/WARN/FAIL reporting.
-7. Playwright verifies navigation and footer content against `spec.json`, checks child-element overflow at desktop and mobile sizes, and supports `STRICT_COPY=1` to catch prompt leaks and stub cards.
+7. Playwright verifies navigation and footer content against `spec.json`, checks child-element overflow at desktop and mobile sizes, enforces WCAG 2.1 AA accessibility & color contrast via `@axe-core/playwright`, and supports `STRICT_COPY=1` to catch prompt leaks and stub cards.
 
 ## Review role
 

@@ -43,7 +43,7 @@ pre-commit install
 ```
 
 ```bash
-# Verify a single site across all 8 Playwright gates
+# Verify a single site across all 9 Playwright + axe-core WCAG gates
 SITE_SLUG=kaffeekultur-berlin task test
 
 # Preview a site locally in your browser
@@ -57,3 +57,4 @@ ALL_SITES=1 task ci
 
 - [0001. Vanilla static stack and shared Playwright harness](docs/adr/0001-vanilla-static-stack-and-shared-playwright-harness.md)
 - [0002. Public repository governance, `/sites/` loopback isolation, and read-only Playwright verification](docs/adr/0002-public-repo-governance-and-readonly-verification.md)
+- [0003. WCAG accessibility gates with `@axe-core/playwright`](docs/adr/0003-wcag-accessibility-gates-with-axe-core.md)

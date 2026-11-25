@@ -97,7 +97,7 @@
       "heading": "Visit Us in Kreuzberg",
       "purpose": "Provide the physical address and neighborhood context.",
       "required_keywords": [
-        "Oranienstraìee 42",
+        "Oranienstraße 42",
         "Berlin"
       ],
       "required_elements": [
@@ -136,5 +136,5 @@
       ]
     }
   ],
-  "footer_text": "© 2026 Kaffeekultur Berlin · Oranienstraìee 42, 10999 Berlin-Kreuzberg"
+  "footer_text": "© 2026 Kaffeekultur Berlin · Oranienstraße 42, 10999 Berlin-Kreuzberg"
 }
