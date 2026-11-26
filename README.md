@@ -1,5 +1,10 @@
 # ai-factory-websites
 
+[![CI](https://github.com/barbarosydev/ai-factory-websites/actions/workflows/ci.yml/badge.svg)](https://github.com/barbarosydev/ai-factory-websites/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Playwright](https://img.shields.io/badge/Playwright-9_Gates-2EAD33)](tests/site.spec.mjs)
+[![WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-axe--core_WCAG_2.1_AA-005A9C)](docs/adr/0003-wcag-accessibility-gates-with-axe-core.md)
+
 Static single-page websites generated, verified, and maintained autonomously by [`ai-factory`](https://github.com/barbarosydev/ai-factory) on local Apple Silicon models.
 
 ## How a User Interacts With the Factory
@@ -21,6 +26,16 @@ Static single-page websites generated, verified, and maintained autonomously by 
 | `factory:failed` | Exhausted 3 bounded repair attempts; failure snapshot archived locally |
 
 3. **Review or Answer**: Reply to any `factory:waiting` comment to resume the workflow within ~15s, or inspect inline desktop (`1280x800`) and mobile (`375x812`) screenshots attached to every opened PR. See the full [User & Operator Journey](https://github.com/barbarosydev/ai-factory/blob/main/docs/user-journey.md) in `ai-factory`.
+
+## 9 Deterministic Quality Gates
+
+Every generated or modified site under `sites/<slug>/` must pass all 9 automated Playwright gates ([`site.spec.mjs`](tests/site.spec.mjs)) before a PR is opened or merged:
+
+- **Static & Zero-External-Network**: Plain HTML5/CSS/vanilla JS with zero per-site `package.json` or external CDN/network requests.
+- **Responsive Layout & Overflow**: Zero horizontal or child-element overflow across desktop (`1280x800`) and mobile (`375x812`).
+- **Accessibility (WCAG 2.1 AA)**: Zero serious/critical `@axe-core/playwright` violations, including color-contrast checks.
+- **Anti-Prompt-Leak & `spec.json` Contract**: Navigation, footer, and content match `spec.json`, with `STRICT_COPY=1` catching placeholder stubs and leaked instructions.
+- **Visual Evidence**: Fresh `evidence/desktop.png` and `evidence/mobile.png` screenshots generated per run.
 
 ## Sites Catalog
 
