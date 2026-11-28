@@ -8,12 +8,12 @@ tasks:
     silent: true
 
   lint:
-    desc: Run shellcheck, ruff, JSON/YAML checks, Conftest policies, actionlint, and doc checks
+    desc: Run shellcheck, ruff, JS/spec.json checks, external-URL scan, Conftest policies, actionlint, and doc checks
     cmds:
       - ./scripts/lint.sh
 
   test:
-    desc: "Run hook tests and Playwright site verification (set SITE_SLUG=<slug> or ALL_SITES=1)"
+    desc: "Run hook tests and 11 Playwright + WCAG 2.1 AA quality gates (SITE_SLUG=<slug> or ALL_SITES=1)"
     cmds:
       - ./scripts/test.sh {{.CLI_ARGS}}
 
@@ -23,9 +23,14 @@ tasks:
       - ./scripts/ci.sh {{.CLI_ARGS}}
 
   preview:
-    desc: "Serve a local site for browser preview (e.g. SITE_SLUG=_template task preview)"
+    desc: "Serve the interactive Showcase Portal (default) or a single site (SITE_SLUG=<slug> task preview -- --open)"
     cmds:
       - node ./scripts/serve.mjs {{.CLI_ARGS}}
+
+  portal:
+    desc: Build the static Showcase Portal bundle in dist/ from sites/*/spec.json
+    cmds:
+      - ./scripts/portal.sh {{.CLI_ARGS}}
 
   setup:labels:
     desc: Create or update all factory:* labels on GitHub using gh CLI

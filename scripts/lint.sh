@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Lint shell scripts, Python helpers, JSON/YAML files, Conftest policies, GitHub Actions, site isolation, and doc links.
+# Lint shell scripts, Python helpers, JS syntax, JSON/YAML & spec.json schemas, Conftest policies, GitHub Actions, site isolation, and doc links.
 set -euo pipefail
 
 # shellcheck source=scripts/lib/common.sh
@@ -20,7 +20,7 @@ run() {
 
 tracked() { git ls-files --cached --others --exclude-standard -- "$@"; }
 
-require_cmd shellcheck ruff jq yq conftest actionlint
+require_cmd shellcheck ruff jq yq conftest actionlint node
 
 shell_files="$(tracked '*.sh')"
 if [[ -n "$shell_files" ]]; then
@@ -37,6 +37,19 @@ if [[ -n "$py_files" ]]; then
 fi
 
 # shellcheck disable=SC2317,SC2329
+js_syntax_ok() {
+  local f
+  for f in "$@"; do
+    node --check "$f" || return 1
+  done
+}
+js_files="$(tracked '*.js' '*.mjs')"
+if [[ -n "$js_files" ]]; then
+  # shellcheck disable=SC2086
+  run "node --check ($(wc -l <<<"$js_files" | tr -d ' ') JS/MJS files)" js_syntax_ok $js_files
+fi
+
+# shellcheck disable=SC2317,SC2329
 yaml_ok() { yq eval 'true' "$1" >/dev/null; }
 while IFS= read -r f; do
   [[ -n "$f" ]] && run "json $f" jq empty "$f"
@@ -45,14 +58,47 @@ while IFS= read -r f; do
   [[ -n "$f" ]] && run "yaml $f" yaml_ok "$f"
 done <<<"$(tracked '*.yml' '*.yaml')"
 
-# Ensure no site under sites/ contains forbidden npm/package files
+# Validate every sites/*/spec.json schema and slug consistency
+# shellcheck disable=SC2317,SC2329
+validate_site_specs() {
+  local spec dir slug
+  for dir in "$REPO_ROOT"/sites/*/; do
+    [[ -d "$dir" ]] || continue
+    slug="$(basename "$dir")"
+    spec="${dir}spec.json"
+    [[ -f "$spec" ]] || { echo "missing spec.json for site $slug" >&2; return 1; }
+    jq -e --arg slug "$slug" '
+      .schema_version == "v1" and
+      .site_slug == $slug and
+      (.page_title | type == "string" and length > 0) and
+      (.footer_text | type == "string" and length > 0) and
+      (.navigation | type == "array" and length > 0) and
+      (.sections | type == "array" and length >= 3 and length <= 8) and
+      (.theme.primary_color | test("^#[0-9A-Fa-f]{6}$")) and
+      (.theme.background_color | test("^#[0-9A-Fa-f]{6}$")) and
+      (.theme.accent_color | test("^#[0-9A-Fa-f]{6}$"))
+    ' "$spec" >/dev/null || { echo "invalid spec.json schema in sites/$slug/spec.json" >&2; return 1; }
+  done
+}
+run "site spec.json schema validation" validate_site_specs
+
+# Ensure no site under sites/ contains forbidden npm/package files at any depth
 # shellcheck disable=SC2317,SC2329
 no_per_site_npm() {
   local bad
-  bad="$(find sites -maxdepth 3 \( -name 'package.json' -o -name 'package-lock.json' -o -name 'node_modules' \) 2>/dev/null || true)"
-  [[ -z "$bad" ]] || { echo "forbidden per-site npm files: $bad" >&2; return 1; }
+  bad="$(find sites \( -name 'package.json' -o -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' -o -name 'node_modules' \) 2>/dev/null || true)"
+  [[ -z "$bad" ]] || { echo "forbidden per-site package files: $bad" >&2; return 1; }
 }
 run "site dependency isolation (no per-site package.json)" no_per_site_npm
+
+# Static external URL scan across all site HTML/CSS/JS/SVG files
+# shellcheck disable=SC2317,SC2329
+no_external_site_assets() {
+  local hits
+  hits="$(grep -rnE "(src|href)=['\"]?(https?:|//)|url\(['\"]?(https?:|//)|@import[[:space:]]+['\"]?(https?:|//)" sites --include='*.html' --include='*.css' --include='*.js' --include='*.svg' 2>/dev/null || true)"
+  [[ -z "$hits" ]] || { echo "disallowed external asset URLs in sites/: $hits" >&2; return 1; }
+}
+run "static external asset URL scan (sites/)" no_external_site_assets
 
 run "conftest verify (policy unit tests)" conftest verify --no-color --policy policy
 # shellcheck disable=SC2046

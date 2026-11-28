@@ -83,6 +83,12 @@ def check_file(root: pathlib.Path, md_file: pathlib.Path) -> list[tuple[int, str
                 continue
             if not link_target_exists(md_file, target):
                 broken.append((lineno, target))
+        for match in IMAGE_RE.finditer(line):
+            target = match.group(1)
+            if target.startswith(SKIPPED_SCHEMES) or target.startswith("#"):
+                continue
+            if not link_target_exists(md_file, target):
+                broken.append((lineno, target))
         stripped = IMAGE_RE.sub("", LINK_RE.sub("", line))
         for match in CODE_RE.finditer(stripped):
             path = code_path_candidate(match.group(1))
