@@ -4,6 +4,7 @@ set -euo pipefail
 
 # shellcheck source=scripts/lib/common.sh
 source "$(dirname "$0")/lib/common.sh"
+cd "$REPO_ROOT"
 require_cmd gh
 
 labels=(

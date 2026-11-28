@@ -4,11 +4,16 @@ title: "[Modify Site]: "
 labels:
   - "factory:ready"
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Update an existing website in `sites/`. Check the [Sites Catalog](https://github.com/barbarosydev/ai-factory-websites#sites-catalog) for exact slugs (`lowercase-kebab-case`).
+        - **Lifecycle**: `factory:ready` -> `factory:running` -> `factory:review` PR with refreshed Desktop & Mobile screenshots.
   - type: input
     id: site_slug
     attributes:
       label: Target Site Slug
-      description: Exact directory name under sites/ (e.g. kaffeekultur-berlin).
+      description: Exact directory name under `sites/` (lowercase kebab-case, e.g. `kaffeekultur-berlin`).
       placeholder: kaffeekultur-berlin
     validations:
       required: true
@@ -24,5 +29,5 @@ body:
     id: constraints
     attributes:
       label: Must-Keep / Constraints (optional)
-      description: Existing sections, facts, or styles that must remain unchanged.
-      placeholder: Keep existing opening hours and Berlin Kreuzberg address unchanged.
+      description: Existing sections, UTF-8 facts (e.g. street names), or styles that must remain unchanged.
+      placeholder: Keep existing opening hours and Oranienstraße 42 Berlin-Kreuzberg address unchanged.

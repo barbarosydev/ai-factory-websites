@@ -15,3 +15,15 @@ test_unpinned_action_fails if {
 		"jobs": {"ci": {"steps": [{"uses": "actions/checkout@v7"}]}},
 	}
 }
+
+test_job_write_permission_fails if {
+	count(github.deny) > 0 with input as {
+		"permissions": {"contents": "read"},
+		"jobs": {
+			"ci": {
+				"permissions": {"contents": "write"},
+				"steps": [{"uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"}],
+			},
+		},
+	}
+}

@@ -16,10 +16,11 @@ Use `task` for everything; logic lives in `scripts/`.
 
 | Command | Use |
 | --- | --- |
-| `task lint` | Shellcheck, ruff, JSON/YAML syntax, Conftest policies, actionlint, and doc/command checks |
-| `task test` | Hook tests + Playwright verification suite (`SITE_SLUG=<slug>` or `ALL_SITES=1`) |
+| `task lint` | Shellcheck, ruff, JS/spec.json checks, external-URL scan, Conftest policies, actionlint, and doc/command checks |
+| `task test` | Hook tests + 11 Playwright & WCAG 2.1 AA quality gates (`SITE_SLUG=<slug>` or `ALL_SITES=1`, `STRICT_COPY=1` default) |
 | `task ci` | `task lint`, `task test`, and `gitleaks` secret scan (used by pre-commit and GitHub Actions) |
-| `task preview` | Serve `sites/<SITE_SLUG>/` locally on loopback for manual browser preview |
+| `task preview` | Serve the interactive Showcase Portal (default) or `sites/<SITE_SLUG>/` locally on loopback (`-- --open` launches browser) |
+| `task portal` | Build the static Showcase Portal bundle in `dist/` from `sites/*/spec.json` |
 | `task setup:labels` | Idempotently create/update the 7 `factory:*` GitHub labels via `gh` |
 
 ## Hard rules

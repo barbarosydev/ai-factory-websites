@@ -10,7 +10,7 @@ payload="$(cat)"
 file_path="$(jq -r '.tool_input.file_path // empty' <<<"$payload")"
 [[ -z "$file_path" ]] && exit 0
 
-if grep -Eq '(^|/)sites/[^/]+/(package\.json|package-lock\.json|node_modules/)' <<<"$file_path"; then
+if grep -Eq '(^|/)sites/[^/]+/(.*/)?(package\.json|package-lock\.json|yarn\.lock|pnpm-lock\.yaml|node_modules(/|$))' <<<"$file_path"; then
   echo "Blocked by .claude/hooks/site-isolation-guard.sh: per-site npm files are forbidden under sites/; Playwright lives only at repo root." >&2
   exit 2
 fi

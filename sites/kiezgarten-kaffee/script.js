@@ -1,13 +1,25 @@
-// Minimal JS for mobile menu toggle
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.querySelector('.menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('#nav-menu');
 
-    if (toggleButton && navMenu) {
-        toggleButton.addEventListener('click', () => {
-            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true' || false;
-            toggleButton.setAttribute('aria-expanded', !isExpanded);
-            navMenu.classList.toggle('active');
-        });
+if (toggle && nav) {
+  const closeMenu = () => {
+    nav.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('active')) {
+      closeMenu();
+      toggle.focus();
     }
-});
+  });
+}

@@ -6,7 +6,9 @@ REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 # shellcheck source=scripts/lib/common.sh
 source "$REPO_ROOT/scripts/lib/common.sh"
 
-unset "$(git rev-parse --local-env-vars 2>/dev/null || true)" 2>/dev/null || true
+while IFS= read -r git_var; do
+  [[ -n "$git_var" ]] && unset "$git_var"
+done < <(git rev-parse --local-env-vars 2>/dev/null || true) # unset inherited git hook env vars in tests
 
 failed=0
 pass() { printf '%sPASS%s  %-22s %s\n' "$C_GREEN" "$C_RESET" "$1" "$2"; }
@@ -29,6 +31,8 @@ expect_hook() {
 
 # site-isolation-guard.sh
 expect_hook 2 "site-isolation-guard.sh" "blocks per-site package.json" '{"tool_input":{"file_path":"sites/coffee-shop/package.json"}}'
+expect_hook 2 "site-isolation-guard.sh" "blocks nested per-site package.json" '{"tool_input":{"file_path":"sites/coffee-shop/nested/package.json"}}'
+expect_hook 2 "site-isolation-guard.sh" "blocks per-site yarn.lock" '{"tool_input":{"file_path":"sites/coffee-shop/yarn.lock"}}'
 expect_hook 2 "site-isolation-guard.sh" "blocks cross-site edit when SITE_TARGET_SLUG set" '{"tool_input":{"file_path":"sites/bakery/index.html"}}' "SITE_TARGET_SLUG=coffee-shop"
 expect_hook 0 "site-isolation-guard.sh" "allows target site edit" '{"tool_input":{"file_path":"sites/coffee-shop/index.html"}}' "SITE_TARGET_SLUG=coffee-shop"
 

@@ -34,3 +34,10 @@ test_valid_settings_passes if {
 		},
 	}
 }
+
+test_missing_deny_rule_fails if {
+	count(claude.deny) > 0 with input as {
+		"permissions": {"deny": ["Read(**/.env)"]},
+		"hooks": {"PreToolUse": []},
+	}
+}

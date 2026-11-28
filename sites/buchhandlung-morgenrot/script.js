@@ -1,14 +1,25 @@
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.getElementById('menu-button');
-    const navMenu = document.getElementById('nav-menu');
+const toggle = document.querySelector('#menu-button');
+const navList = document.querySelector('#nav-menu');
 
-    // Mobile Menu Toggle Logic
-    if (menuButton && navMenu) {
-        menuButton.addEventListener('click', () => {
-            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
-            menuButton.setAttribute('aria-expanded', !isExpanded);
-            navMenu.classList.toggle('active');
-        });
+if (toggle && navList) {
+  const closeNav = () => {
+    navList.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  navList.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeNav);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navList.classList.contains('active')) {
+      closeNav();
+      toggle.focus();
     }
-});
+  });
+}

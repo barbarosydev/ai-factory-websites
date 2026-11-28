@@ -35,4 +35,5 @@ jobs:
       - name: Run task ci across all sites
         env:
           ALL_SITES: "1"
+          STRICT_COPY: "1"
         run: task ci

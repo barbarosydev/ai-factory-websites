@@ -8,13 +8,14 @@ body:
     attributes:
       value: |
         Describe the single-page static website you want the factory to build.
-        Supported: coffee shop, bakery, restaurant, barber, photographer, portfolio, consultancy, local store, event page.
-        Out of scope for v1: login/auth, databases, payments/e-commerce, backend APIs.
+        - **Supported**: coffee shop, bakery, restaurant, barber, photographer, portfolio, consultancy, local store, event page.
+        - **Out of scope for v1**: login/auth, databases, payments/e-commerce, backend APIs.
+        - **Lifecycle**: `factory:ready` -> `factory:running` -> optional `factory:waiting` (reply in a comment to resume) -> `factory:review` PR with Desktop & Mobile screenshots.
   - type: input
     id: site_slug
     attributes:
       label: Site Slug (optional)
-      description: Lowercase kebab-case folder name under sites/. Leave blank for the PM agent to choose.
+      description: Lowercase kebab-case folder name under `sites/`. Leave blank for the PM agent to choose.
       placeholder: kaffeekultur-berlin
   - type: dropdown
     id: category
@@ -33,6 +34,28 @@ body:
         - Other
     validations:
       required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Primary Website Language
+      description: Language used for visible copy and HTML `lang` attribute.
+      options:
+        - English
+        - Deutsch (German)
+        - Bilingual (English + Deutsch)
+      default: 0
+  - type: dropdown
+    id: visual_mood
+    attributes:
+      label: Visual Aesthetic / Design Direction
+      description: Helps the PM and Developer agents tailor typography, surfaces, and palette contrast.
+      options:
+        - Warm Editorial (serif headings, cream surfaces, rich earthy accent)
+        - Minimalist Modern (crisp sans-serif, generous whitespace, high-contrast slate)
+        - Botanical & Organic (deep forest tones, natural parchment, warm sand accent)
+        - Dark & Moody (charcoal hero bands, luminous typography, copper/gold highlights)
+        - Playful Craft (expressive color bands, friendly cards, artisan feel)
+      default: 0
   - type: textarea
     id: description
     attributes:
@@ -41,11 +64,22 @@ body:
       placeholder: Create a responsive single-page website for a fictional specialty coffee shop in Berlin Kreuzberg. Include hero, about, menu, opening hours, location, and contact information.
     validations:
       required: true
+  - type: checkboxes
+    id: sections_features
+    attributes:
+      label: Desired Sections & Vanilla JS Interactions (optional)
+      options:
+        - label: Menu / Services catalog with prices or descriptions
+        - label: Opening hours table (with client-side Open Now badge)
+        - label: Upcoming events or workshops schedule
+        - label: Neighborhood location details + stylized inline SVG map
+        - label: Interactive FAQ accordion or category filter
   - type: textarea
     id: must_have_facts
     attributes:
-      label: Must-Have Facts (optional)
-      description: Exact business name, address, hours, prices, or contact details that must not be invented.
+      label: Must-Have Facts & Brand Colors (optional)
+      description: Exact business name, address, hours, phone/email, or 6-digit hex palette that must not be invented.
       placeholder: |
         Name: Kaffeekultur Berlin
-        Address: Oranienstraße 42, 10969 Berlin
+        Address: Oranienstraße 42, 10999 Berlin-Kreuzberg
+        Colors (optional): #2C1A12 primary, #FAF6F0 background, #2D6A4F accent

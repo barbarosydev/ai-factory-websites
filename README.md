@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/barbarosydev/ai-factory-websites/actions/workflows/ci.yml/badge.svg)](https://github.com/barbarosydev/ai-factory-websites/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Playwright](https://img.shields.io/badge/Playwright-9_Gates-2EAD33)](tests/site.spec.mjs)
+[![Playwright](https://img.shields.io/badge/Playwright-11_Gates-2EAD33)](tests/site.spec.mjs)
 [![WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-axe--core_WCAG_2.1_AA-005A9C)](docs/adr/0003-wcag-accessibility-gates-with-axe-core.md)
 
 Static single-page websites generated, verified, and maintained autonomously by [`ai-factory`](https://github.com/barbarosydev/ai-factory) on local Apple Silicon models.
@@ -27,15 +27,16 @@ Static single-page websites generated, verified, and maintained autonomously by 
 
 3. **Review or Answer**: Reply to any `factory:waiting` comment to resume the workflow within ~15s, or inspect inline desktop (`1280x800`) and mobile (`375x812`) screenshots attached to every opened PR. See the full [User & Operator Journey](https://github.com/barbarosydev/ai-factory/blob/main/docs/user-journey.md) in `ai-factory`.
 
-## 9 Deterministic Quality Gates
+## 11 Deterministic Quality Gates
 
-Every generated or modified site under `sites/<slug>/` must pass all 9 automated Playwright gates ([`site.spec.mjs`](tests/site.spec.mjs)) before a PR is opened or merged:
+Every generated or modified site under `sites/<slug>/` must pass all 11 independent Playwright gates ([`site.spec.mjs`](tests/site.spec.mjs)) before a PR is opened or merged:
 
-- **Static & Zero-External-Network**: Plain HTML5/CSS/vanilla JS with zero per-site `package.json` or external CDN/network requests.
-- **Responsive Layout & Overflow**: Zero horizontal or child-element overflow across desktop (`1280x800`) and mobile (`375x812`).
-- **Accessibility (WCAG 2.1 AA)**: Zero serious/critical `@axe-core/playwright` violations, including color-contrast checks.
-- **Anti-Prompt-Leak & `spec.json` Contract**: Navigation, footer, and content match `spec.json`, with `STRICT_COPY=1` catching placeholder stubs and leaked instructions.
-- **Visual Evidence**: Fresh `evidence/desktop.png` and `evidence/mobile.png` screenshots generated per run.
+- **Static & Zero-External-Network**: Plain HTML5/CSS/vanilla JS with zero per-site `package.json`, strict same-origin network allowlist, zero HTTP 4xx/5xx or broken images, and static external-URL scanning.
+- **Responsive Layout & Overflow**: Zero horizontal or child-element overflow across `<header>`, `<main>`, and `<footer>` at desktop (`1280x800`) and mobile (`375x812`), plus sticky-header overflow sanity.
+- **Accessibility (WCAG 2.1 AA, Desktop + Mobile)**: Zero `@axe-core/playwright` violations **and** zero `equalRatio` invisible-text contrast failures across both desktop and mobile viewports.
+- **Interactive Navigation & Semantics**: Single `<h1>`, zero duplicate IDs, valid heading hierarchy, `:focus-visible` keyboard styles, and live mobile drawer toggle (`aria-expanded`) verification.
+- **Copy Authenticity & `spec.json` Contract**: Navigation labels, semantic elements, and footer match `spec.json`, with `STRICT_COPY=1` enabled by default to catch prompt leaks, placeholder stubs, and dead `href="#"` links.
+- **Visual Evidence**: Fresh `evidence/desktop.png` and `evidence/mobile.png` screenshots verified per run.
 
 ## Sites Catalog
 
@@ -68,13 +69,19 @@ pre-commit install
 ```
 
 ```bash
-# Verify a single site across all 9 Playwright + axe-core WCAG gates
+# Launch the interactive Showcase Portal & Desktop/Tablet/Mobile Studio
+task preview -- --open
+
+# Preview a single site directly in your browser
+SITE_SLUG=kaffeekultur-berlin task preview -- --open
+
+# Build the static Showcase Portal bundle in dist/
+task portal
+
+# Verify a single site across all 11 Playwright + axe-core WCAG gates
 SITE_SLUG=kaffeekultur-berlin task test
 
-# Preview a site locally in your browser
-SITE_SLUG=kaffeekultur-berlin task preview
-
-# Run all linters, policies, hook tests, Playwright suite across all sites, and secret scan
+# Run all linters, policies, hook tests, 11 Playwright gates across all sites, and secret scan
 ALL_SITES=1 task ci
 ```
 

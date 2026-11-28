@@ -18,6 +18,19 @@ deny contains msg if {
 
 deny contains msg if {
 	some job_name, job in input.jobs
+	job.permissions == "write-all"
+	msg := sprintf("job %q sets `permissions: write-all`; token must stay read-only", [job_name])
+}
+
+deny contains msg if {
+	some job_name, job in input.jobs
+	some scope, level in job.permissions
+	level == "write"
+	msg := sprintf("job %q grants `%s: write`; token must stay read-only", [job_name, scope])
+}
+
+deny contains msg if {
+	some job_name, job in input.jobs
 	some step in job.steps
 	uses := step.uses
 	not startswith(uses, "./")

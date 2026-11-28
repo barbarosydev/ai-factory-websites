@@ -4,10 +4,11 @@
 
 | Command | Use |
 | --- | --- |
-| `task lint` | Run shellcheck, ruff, JSON/YAML checks, Conftest policies, actionlint, and doc checks |
-| `task test` | Run hook tests and Playwright site verification (`SITE_SLUG=<slug>` or `ALL_SITES=1`) |
+| `task lint` | Run shellcheck, ruff, JS/spec.json checks, external-URL scan, Conftest policies, actionlint, and doc checks |
+| `task test` | Run hook tests and 11 Playwright + WCAG 2.1 AA quality gates (`SITE_SLUG=<slug>` or `ALL_SITES=1`) |
 | `task ci` | Run `task lint`, `task test`, and `gitleaks` secret scan |
-| `task preview` | Serve `sites/<SITE_SLUG>/` locally on loopback for browser preview |
+| `task preview` | Serve the interactive Showcase Portal (default) or `sites/<SITE_SLUG>/` locally (`-- --open` launches browser) |
+| `task portal` | Build the static Showcase Portal bundle in `dist/` from `sites/*/spec.json` |
 | `task setup:labels` | Create or update all 7 `factory:*` labels on GitHub using `gh` |
 
 ## Verifying a Site Locally

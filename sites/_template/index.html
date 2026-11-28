@@ -3,13 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nordlicht Studio — clean, accessible, zero-dependency static single-page architecture verified end to end.">
   <title>Nordlicht Studio — Reference Baseline</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E293B'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%230F766E'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Nordlicht Studio",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Musterweg 12",
+      "postalCode": "10115",
+      "addressLocality": "Berlin",
+      "addressCountry": "DE"
+    },
+    "email": "hello@nordlicht.example"
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#hero">Nordlicht Studio</a>
+      <a class="brand" href="#hero">
+        <svg class="brand-mark" viewBox="0 0 28 28" width="24" height="24" aria-hidden="true">
+          <rect width="28" height="28" rx="7" fill="#0F766E" />
+          <circle cx="14" cy="14" r="6" fill="#F8FAFC" />
+        </svg>
+        <span>Nordlicht Studio</span>
+      </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav id="site-nav" class="site-nav" aria-label="Primary">
         <a href="#about">About</a>
@@ -20,29 +45,40 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section id="hero" class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Reference Factory Fixture</p>
+          <p class="eyebrow">Reference Design Baseline</p>
           <h1>Nordlicht Studio</h1>
-          <p class="lead">Clean static architecture verified end to end for desktop and mobile.</p>
-          <a class="btn" href="#services">Explore Services</a>
+          <p class="lead">Clean static architecture verified end to end for desktop, mobile, and WCAG 2.1 AA accessibility.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#services">Explore Services</a>
+            <a class="btn btn-secondary" href="#contact">Get in Touch</a>
+          </div>
         </div>
         <div class="hero-art" aria-hidden="true">
-          <svg viewBox="0 0 320 220" width="320" height="220" role="img">
-            <rect x="8" y="8" width="304" height="204" rx="18" fill="#0F766E" fill-opacity="0.12" stroke="#0F766E" stroke-width="2" />
-            <circle cx="110" cy="110" r="52" fill="#0F766E" />
-            <rect x="176" y="70" width="96" height="80" rx="12" fill="#1E293B" />
+          <svg viewBox="0 0 360 240" width="360" height="240" focusable="false">
+            <rect x="8" y="8" width="344" height="224" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+            <rect x="28" y="28" width="144" height="184" rx="14" fill="#1E293B" />
+            <circle cx="100" cy="96" r="36" fill="#0F766E" />
+            <rect x="52" y="150" width="96" height="12" rx="6" fill="#94A3B8" />
+            <rect x="68" y="172" width="64" height="10" rx="5" fill="#475569" />
+            <rect x="192" y="28" width="140" height="84" rx="14" fill="#E6F4F1" stroke="#0F766E" stroke-width="1.5" />
+            <rect x="210" y="50" width="84" height="12" rx="6" fill="#0F766E" />
+            <rect x="210" y="72" width="104" height="10" rx="5" fill="#475569" />
+            <rect x="192" y="128" width="140" height="84" rx="14" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5" />
+            <rect x="210" y="152" width="100" height="12" rx="6" fill="#1E293B" />
+            <rect x="210" y="174" width="76" height="10" rx="5" fill="#64748B" />
           </svg>
         </div>
       </div>
     </section>
 
     <section id="about" class="section">
-      <div class="container">
+      <div class="container narrow">
         <h2>About Us</h2>
-        <p>We craft dependable, accessible single-page websites with local zero-dependency static assets and clear typography.</p>
+        <p>We craft dependable, accessible single-page websites with local zero-dependency static assets, crisp system typography, and durable HTML5 semantics built to last.</p>
       </div>
     </section>
 
@@ -52,15 +88,15 @@
         <div class="cards">
           <article class="card">
             <h3>Consultation</h3>
-            <p>Clear scoping and practical layout planning tailored to small businesses.</p>
+            <p>Clear scoping, content hierarchy, and practical layout planning tailored to independent local businesses.</p>
           </article>
           <article class="card">
             <h3>Design</h3>
-            <p>Responsive grid layouts tested on both desktop and mobile viewports.</p>
+            <p>Responsive CSS Grid and Flexbox layouts tuned for comfortable reading on both desktop and mobile viewports.</p>
           </article>
           <article class="card">
             <h3>Verification</h3>
-            <p>Automated Playwright checks covering landmarks, links, and zero console errors.</p>
+            <p>Automated Playwright and axe-core checks covering landmarks, links, contrast, keyboard focus, and zero console errors.</p>
           </article>
         </div>
       </div>
@@ -78,9 +114,26 @@
     </section>
 
     <section id="contact" class="section section-alt">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>Visit us at Musterweg 12, 10115 Berlin or write to <a href="mailto:hello@nordlicht.example">hello@nordlicht.example</a>.</p>
+      <div class="container contact-grid">
+        <div>
+          <h2>Contact</h2>
+          <address class="contact-address">
+            <p>Musterweg 12, 10115 Berlin</p>
+            <p>Email: <a href="mailto:hello@nordlicht.example">hello@nordlicht.example</a></p>
+            <p>Phone: <a href="tel:+49301234560">+49 30 1234560</a></p>
+          </address>
+        </div>
+        <div class="map-card" aria-label="Stylized map of Musterweg 12, Berlin-Mitte">
+          <svg viewBox="0 0 360 200" width="360" height="200" role="img" aria-label="Neighborhood street map showing Nordlicht Studio at Musterweg 12">
+            <rect width="360" height="200" rx="14" fill="#EEF2F6" />
+            <path d="M0 64 L360 44 M0 138 L360 156 M112 0 L94 200 M246 0 L264 200" stroke="#CBD5E1" stroke-width="10" fill="none" />
+            <path d="M0 100 L360 100" stroke="#FFFFFF" stroke-width="14" fill="none" />
+            <circle cx="180" cy="100" r="14" fill="#0F766E" />
+            <circle cx="180" cy="100" r="5" fill="#FFFFFF" />
+            <rect x="116" y="122" width="128" height="26" rx="6" fill="#1E293B" />
+            <text x="180" y="139" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Musterweg 12</text>
+          </svg>
+        </div>
       </div>
     </section>
   </main>
